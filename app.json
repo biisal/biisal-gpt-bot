@@ -1,0 +1,57 @@
+{
+    "name": "biisal",
+    "description": "A Pyrogram Telegram Ai-Chat-bot,api not required to use 😎. @biisal",
+    "keywords": [
+        "telegram",
+        "pyrogram",
+        "python",
+        "plugin",
+        "modular",
+        "media",
+        "bot"
+    ],
+    "repository": "https://github.com/biisal/biisal-gpt-bot/",
+    "success_url": "/",
+    "logo": "https://i.postimg.cc/cJk8XMMc/photo-6120885699327671985-c.jpg",
+    "website": "https://bit.ly/bisal",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from https://my.telegram.org"
+        },
+        "API_HASH": {
+            "description": "Get this value from https://my.telegram.org"
+        },
+        "BOT_TOKEN": {
+            "description": "Get this value from @BotFather"
+        },
+        "LOG_CHANNEL": {
+            "description": "The LOG Channel ID. To get new users log"
+        },
+        "MONGO_URL": {
+            "description": "MongoDB URI for saving User IDs when they first Start the Bot. We will use that for Broadcasting to them. I will try to add more features related with Database."
+        },
+        "BOT_NAME": {
+            "description": "Give your Ai a cool name"
+        },
+        "CHAT_GROUP": {
+            "description": "Give your GROUP ID.Bot will be able to talk in that group using /bol command"
+        },
+        "ADMIN": {
+            "description": "Give your User ID."
+        },
+        "ADMIN_NAME": {
+            "description": "Give your Name Here."
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
