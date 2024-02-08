@@ -2,4 +2,4 @@ pyrogram
 tgcrypto
 pytz
 requests==2.26.0
-
+telegraph==2.2.0

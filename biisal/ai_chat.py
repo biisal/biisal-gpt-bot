@@ -7,9 +7,9 @@ import time
 from info import *
 from .db import *
 import asyncio
+from telegraph import upload_file
+import os
 user_cooldowns = {}
-
-
 @Client.on_message(filters.command("start") & filters.incoming)
 async def startcmd(client, message):
     userMention = message.from_user.mention()
@@ -22,27 +22,16 @@ async def startcmd(client, message):
     await message.reply_photo(
         photo="https://telegra.ph/file/595e38a4d76848c01b110.jpg",
         caption=f"<b>Jai Shree Krishna {userMention},\n\nIᴍ Hᴇʀᴇ Tᴏ Rᴇᴅᴜᴄᴇ Yᴏᴜʀ Pʀᴏʙʟᴇᴍs..\nYᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ..\nAsᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ..\n\nMʏ Cʀᴇᴀᴛᴏʀ : <a href=https://t.me/biisal>Bɪɪsᴀʟ</a>\nMʏ Lᴏᴠᴇʀ : <a href=tg://settings/>Tʜɪs Pᴇʀsᴏɴ</a></b>",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "ᴍᴏᴠɪᴇ ʀᴇǫᴜᴇsᴛ ɢʀᴏᴜᴘ 🚩", url=f"https://t.me/+PA8OPL2Zglk3MDM1"
-                    )
-                ]
-            ]
-        ),
     )
     return
 
 
 async def ai_res(message ,query):
     try:
-        print(query)
         userMention = message.from_user.mention()
         url = f'https://bisal-nothing-org.koyeb.app/biisal?query={query}&bot_name={BOT_NAME}&bot_admin={ADMIN_NAME}' #dont try to change anything here ⚠️
         res = requests.get(url)
         if res.status_code == 200:
-            print(res)
             response_json = res.json()  
             api_response = response_json.get('response')  
             if len(query) <= 280:
@@ -124,17 +113,6 @@ async def broadcasting_func(client, message):
     )
     if not bAdminText:
         return await message.reply_text("caption to likh gadhe !!")
-    # bmsg = await message.reply_text(
-    #     text=f"Do u want to Broadcast :\n\n{bAdminText}",
-    #     reply_markup=InlineKeyboardMarkup(
-    #         [
-    #             [
-    #                 InlineKeyboardButton("Yes", callback_data="brdcstYes"),
-    #                 InlineKeyboardButton("No", callback_data="brdcstNo"),
-    #             ]
-    #         ]
-    #     ),
-    # )
     bmsg = await message.reply_text(text=f"Broadcast Started for :\n\n{bAdminText}")
     if message.reply_to_message and message.reply_to_message.audio:
         audio_message = message.reply_to_message.audio
@@ -202,6 +180,90 @@ async def broadcasting_func(client, message):
         f"succesfully broadcasted to {count} users...\n\n Failed : {failed}"
     )
     return
+
+
+@Client.on_message(filters.command("scan_ph") )
+async def telegraph_upload(client, message):
+        if ONLY_SCAN_IN_GRP and message.chat.id != CHAT_GROUP:
+            return await message.reply(
+                        text=f"<b>You can use this feature only in our support chat.</b>",
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton(
+                                        "Join 🚩",
+                                        url=f"https://t.me/Bisal_Files_Talk",
+                                    )
+                                ]
+                            ]
+                        ),
+                    )
+        try:
+            current_time = time.time()
+            coolDownUser = message.from_user.id
+            question = message.text.split(" ", 1)[1] if len(message.text.split(" ", 1)) > 1 else None
+            replied = message.reply_to_message
+            if coolDownUser in user_cooldowns and current_time - user_cooldowns[coolDownUser] < COOL_TIMER:
+                remaining_time = int(COOL_TIMER - (current_time - user_cooldowns[coolDownUser]))
+                remTimeMsg = await message.reply_text(
+                    f"<b>Please wait for {remaining_time} seconds before using /scan_ph again to prevent flooding. Thanks for your patience! 😊</b>")
+                await asyncio.sleep(remaining_time)
+                await remTimeMsg.delete()
+                return
+            elif not replied:
+                return await message.reply_text("<b>Replay a photo with this command !</b>")
+            elif not ( replied.photo ):
+                return await message.reply_text("<b>Please reply with valid image file</b>")
+            elif (replied.video):
+                    return await message.reply_text("Please reply with valid image file")
+            question = message.text.split(" ", 1)[1] if " " in message.text else ""
+            if not question:
+                return await message.reply_text("<b>Please provide a qustion after the /scan_ph command.\n\nExample Use:\n<code>/scan_ph tell me about this image ! </code>\n\nHope you got it.Try it now..</b>")
+            text = await message.reply_text(f"<b>Jai Shree Krishna {message.from_user.mention()},\nWᴀɪᴛ...😎</b>", disable_web_page_preview=True)   
+            media = await replied.download()
+            await text.edit_text(f"<b>Jai Shree Krishna {message.from_user.mention()},\nNᴏᴡ Iᴍ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ɪᴍᴀɢᴇ...🤔</b>", disable_web_page_preview=True)                                            
+            try:
+                response = upload_file(media)
+            except Exception as error:
+                print(error)
+                return await text.edit_text(text=f"Error :- {error}", disable_web_page_preview=True)          
+            try:
+                os.remove(media)
+            except Exception as error:
+                print(error)
+                return
+            imgUrl = f'https://graph.org{response[0]}'
+            try :
+                url = f'https://bisal-nothing-org.koyeb.app/biisal/img?link={imgUrl}&question={question}'
+                res = requests.get(url)
+                if res.status_code == 200:
+                    response_json = res.json()  
+                    airesponse = response_json.get('response')  
+                await text.edit_text(
+                text=f"<b>Jai Shree Krishna {message.from_user.mention()},\n\n•{airesponse}</b>",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "sᴛᴀʀᴛ ᴍᴇ 🚩", url=f"https://t.me/bisal_gpt_bot?start=z"
+                            )
+                        ]
+                    ]
+                ),
+            )
+                user_cooldowns[coolDownUser] = current_time
+                return
+            except Exception as e:
+                await text.edit_text(f"<b>Sorry i Got Some error !!</b>")
+                await asyncio.sleep(5)
+                await text.delete()
+                await replied.delete()
+                await message.delete()
+                return
+        except Exception as e:
+            print(f'I got this err to scan this img : {e}')
+            await message.reply(f'I got this err to scan this img : {e}')
+
 
 
 
