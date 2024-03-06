@@ -1,6 +1,8 @@
 # ©️biisal jai shree krishna 😎
 from pyrogram import Client
 from info import *
+
+
 class Bot(Client):
     def __init__(self):
         super().__init__(
@@ -18,5 +20,6 @@ class Bot(Client):
         me = await self.get_me()
         print(f"{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️")
         await self.send_message(ADMIN, f"**__{me.first_name}  Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️__**")
+
 
 Bot().run()

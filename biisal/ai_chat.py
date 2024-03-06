@@ -105,12 +105,20 @@ async def grp_res(client, message):
         and current_time - user_cooldowns[coolDownUser] < COOL_TIMER
     ):
         remaining_time = int(COOL_TIMER - (current_time - user_cooldowns[coolDownUser]))
+        try:
+            await message.react(emoji="😢")
+        except Exception:
+            pass
         remTimeMsg = await message.reply_text(
             f"<b>Nope..!! Spaming not allowed bro...\nPlease wait {remaining_time} seconds before sending new message...</b>"
         )
         await asyncio.sleep(remaining_time)
         await remTimeMsg.delete()
         return
+    try:
+        await message.react(emoji=random.choice(REACTIONS))
+    except Exception:
+        pass
     thinkStc = await message.reply_sticker(sticker=random.choice(STICKERS_IDS))
     await ai_res(message, grp_query)
     user_cooldowns[coolDownUser] = current_time
@@ -236,6 +244,10 @@ async def telegraph_upload(client, message):
             remaining_time = int(
                 COOL_TIMER - (current_time - user_cooldowns[coolDownUser])
             )
+            try:
+                await message.react(emoji=random.choice(REACTIONS))
+            except Exception:
+                pass    
             remTimeMsg = await message.reply_text(
                 f"<b>Please wait for {remaining_time} seconds before using /scan_ph again to prevent flooding. Thanks for your patience! 😊</b>"
             )
@@ -253,6 +265,10 @@ async def telegraph_upload(client, message):
             return await message.reply_text(
                 "<b>Please provide a qustion after the /scan_ph command.\n\nExample Use:\n<code>/scan_ph tell me about this image ! </code>\n\nHope you got it.Try it now..</b>"
             )
+        try:
+            await message.react(emoji=random.choice(REACTIONS))
+        except Exception:
+            pass
         text = await message.reply_text(
             f"<b>Jai Shree Krishna {message.from_user.mention()},\nWᴀɪᴛ...😎</b>",
             disable_web_page_preview=True,
@@ -328,12 +344,20 @@ async def AiMsgHanDl(client, message):
         and current_time - user_cooldowns[coolDownUser] < COOL_TIMER
     ):
         remaining_time = int(COOL_TIMER - (current_time - user_cooldowns[coolDownUser]))
+        try:
+            await message.react(emoji="😢")
+        except Exception:
+            pass
         remTimeMsg = await message.reply_text(
             f"<b>Nope..!! Spaming not allowed bro...\nPlease wait {remaining_time} seconds before sending new message...</b>"
         )
         await asyncio.sleep(remaining_time)
         await remTimeMsg.delete()
         return
+    try:
+        await message.react(emoji=random.choice(REACTIONS))
+    except Exception:
+        pass
     thinkStc = await message.reply_sticker(sticker=random.choice(STICKERS_IDS))
     private_query = message.text
     await ai_res(message, private_query)

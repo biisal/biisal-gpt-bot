@@ -12,10 +12,30 @@ Welcome to Biisal GPT Bot, a powerful AI chat bot created by @Biisal! This bot i
 - **Fast Response Times**: Enjoy quick and efficient responses from the bot, providing timely assistance whenever needed.
 - **Continuous Development**: More features are regularly added to enhance the bot's functionality and user experience.
 - **Image Scanning**: Users can now utilize the image scanning feature, enabling them to upload images to the AI for analysis and receive information about the content of the image.
+- **Auto Reaction**: Bot can react to the sender massages
+- **Render/Koyeb deployment Support** :Now the bot can be deployed to Koyeb or Render with Heroku.
 
 ## Deployment
 
 Deploy the bot on Heroku with just a click: [Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/biisal/biisal-gpt-bot)
+
+- **VARIABLES** :
+
+```
+API_ID = YOUR TELEGRAM API ID
+API_HASH = YOUR TELEGRAM APP HASH
+BOT_TOKEN = YOUR BOT TOKEN
+BOT_NAME = YOUR BOT NAME EX> Lumina Chat Bot
+ADMIN = YOUR TELEGRAM ID
+CHAT_GROUP = YOUR CHAT GROUP ID
+ADMIN_NAME = YOUR NAME
+LOG_CHANNEL = A PRIVATE CHANNEL ID
+MONGO_URL = MONGO DB STRING
+AUTH_CHANNEL =
+STICKERS_IDS = REPLY STICKERS IDS
+COOL_TIMER = A COOLDOWN TIMER(20 , 15) TO PREVENT SPAM.
+ONLY_SCAN_IN_GRP  = VALUE SHOULD BE True or False
+```
 
 ## Usage
 
