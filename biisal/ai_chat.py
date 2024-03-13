@@ -37,7 +37,7 @@ async def startcmd(client, message):
 async def ai_res(message, query):
     try:
         userMention = message.from_user.mention()
-        url = f"https://bisal-nothing-org.koyeb.app/biisal?query={query}&bot_name={BOT_NAME}&bot_admin={ADMIN_NAME}"  # dont try to change anything here ⚠️
+        url = f"https://bisal-ai-api.vercel.app/biisal?query={query}&bot_name={BOT_NAME}&bot_admin={ADMIN_NAME}"  # dont try to change anything here ⚠️
         res = requests.get(url)
         if res.status_code == 200:
             response_json = res.json()
@@ -292,7 +292,7 @@ async def telegraph_upload(client, message):
             return
         imgUrl = f"https://graph.org{response[0]}"
         try:
-            url = f"https://bisal-nothing-org.koyeb.app/biisal/img?link={imgUrl}&question={question}"
+            url = f"https://bisal-ai-api.vercel.app/biisal/img?link={imgUrl}&question={question}"
             res = requests.get(url)
             if res.status_code == 200:
                 response_json = res.json()
