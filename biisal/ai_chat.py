@@ -37,8 +37,9 @@ async def startcmd(client, message):
 async def ai_res(message, query):
     try:
         userMention = message.from_user.mention()
-        url = f"https://bisal-ai-api.vercel.app/biisal?query={query}&bot_name={BOT_NAME}&bot_admin={ADMIN_NAME}"  # dont try to change anything here ⚠️
-        res = requests.get(url)
+        obj = {'query' : query ,'bot_name' : BOT_NAME , 'bot_admin'  :ADMIN_NAME }
+        url = f"https://bisal-ai-api.vercel.app/biisal"  # dont try to change anything here ⚠️
+        res = requests.post(url , data=obj)
         if res.status_code == 200:
             response_json = res.json()
             api_response = response_json.get("response")
