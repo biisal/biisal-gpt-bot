@@ -29,7 +29,7 @@ async def startcmd(client, message):
             return
     await message.reply_photo(
         photo="https://telegra.ph/file/e9082bc50bdab83da0eee.jpg",
-        caption=f"<b>✨ Hey {userMention},\n\n<blockquote>Iᴍ Hᴇʀᴇ Tᴏ Rᴇᴅᴜᴄᴇ Yᴏᴜʀ Pʀᴏʙʟᴇᴍs.. ☘️ Yᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ.. ❤ Asᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ.. 〽</blockquote>\n\n Maintained By : <a href=https://t.me/itzmecp>Itzmecp</a></b>",
+        caption=f"<b>✨ Hey {userMention},\n\n<blockquote>Mʏ Nᴀᴍᴇ Is <a href=https://t.me/AngelAi_cpbot>Angel Ai</a></blockquote>\n\nYᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ.. ❤ Asᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ.. 〽\nMaintained By : <a href=https://t.me/itzmecp>Itzmecp</a></b>",
     )
     return
 
