@@ -28,8 +28,8 @@ async def startcmd(client, message):
         if not is_participant:
             return
     await message.reply_photo(
-        photo="https://telegra.ph/file/595e38a4d76848c01b110.jpg",
-        caption=f"<b>Jai Shree Krishna {userMention},\n\nIᴍ Hᴇʀᴇ Tᴏ Rᴇᴅᴜᴄᴇ Yᴏᴜʀ Pʀᴏʙʟᴇᴍs..\nYᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ..\nAsᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ..\n\nMʏ Cʀᴇᴀᴛᴏʀ : <a href=https://t.me/biisal>Bɪɪsᴀʟ</a>\nMʏ Lᴏᴠᴇʀ : <a href=tg://settings/>Tʜɪs Pᴇʀsᴏɴ</a></b>",
+        photo="https://telegra.ph/file/e9082bc50bdab83da0eee.jpg",
+        caption=f"<b>✨ Hey {userMention},\n\n<blockquote>Iᴍ Hᴇʀᴇ Tᴏ Rᴇᴅᴜᴄᴇ Yᴏᴜʀ Pʀᴏʙʟᴇᴍs.. ☘️ Yᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ.. ❤ Asᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ.. 〽</blockquote>\n\n Maintained By : <a href=https://t.me/itzmecp>Itzmecp</a></b>",
     )
     return
 
@@ -45,13 +45,13 @@ async def ai_res(message, query):
             api_response = response_json.get("response")
             if len(query) <= 280:
                 await message.reply_text(
-                    text=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀɪsʜɴᴀ {userMention}\nʏᴏᴜʀ ǫᴜᴇʀʏ : <code>{query}</code>\n\n{BOT_NAME} :\n{api_response}</b>",
+                    text=f"<b>✨ Hello {userMention}\nʏᴏᴜʀ ǫᴜᴇʀʏ : <code>{query}</code>\n\n{BOT_NAME} :\n{api_response}</b>",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton(
-                                    "sᴛᴀʀᴛ ᴍᴇ 🚩",
-                                    url=f"https://t.me/bisal_gpt_bot?start=z",
+                                    "start me 🌙",
+                                    url=f"https://t.me/AngelAi_cpbot?start=z",
                                 )
                             ]
                         ]
@@ -61,13 +61,13 @@ async def ai_res(message, query):
             else:
                 cut_query_str = query[:77]
                 await message.reply_text(
-                    text=f"<b>ᴊᴀɪ sʜʀᴇᴇ ᴋʀɪsʜɴᴀ {userMention}\nʏᴏᴜʀ ǫᴜᴇʀʏ : <code>{cut_query_str}</code>\n\n{BOT_NAME} :\n{api_response}</b>",
+                    text=f"<b>✨ Hello {userMention}\nʏᴏᴜʀ ǫᴜᴇʀʏ : <code>{cut_query_str}</code>\n\n{BOT_NAME} :\n{api_response}</b>",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton(
-                                    "sᴛᴀʀᴛ ᴍᴇ 🚩",
-                                    url=f"https://t.me/bisal_gpt_bot?start=z",
+                                    "start me 🌙",
+                                    url=f"https://t.me/AngelAi_cpbot?start=z",
                                 )
                             ]
                         ]
@@ -97,7 +97,7 @@ async def grp_res(client, message):
     print(grp_query)
     if not grp_query:
         return await message.reply_text(
-            "<b>Abe gadhe /bol k baad kuch likh to le !!.\n\nExample Use:\n<code>/bol Who is lord krshna??</code>\n\nHope you got it.Try it now..</b>"
+            "<b>Example Use:\n<code>/bol Who is lord krshna??</code>\n\nHope you got it.Try it now..</b>"
         )
     current_time = time.time()
     coolDownUser = message.from_user.id
@@ -158,8 +158,8 @@ async def broadcasting_func(client, message):
                         [
                             [
                                 InlineKeyboardButton(
-                                    "ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ 🚩",
-                                    url=f"https://bit.ly/bisal",
+                                    "Admin Support ☘",
+                                    url=f"https://t.me/Itzmecp",
                                 )
                             ]
                         ]
@@ -185,8 +185,8 @@ async def broadcasting_func(client, message):
                             [
                                 [
                                     InlineKeyboardButton(
-                                        "ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ 🚩",
-                                        url=f"https://bit.ly/bisal",
+                                        "Admin Support 🌙",
+                                        url=f"https://t.me/Itzmecp",
                                     )
                                 ]
                             ]
@@ -217,13 +217,13 @@ async def telegraph_upload(client, message):
             return
     if ONLY_SCAN_IN_GRP and message.chat.id != CHAT_GROUP:
         return await message.reply(
-            text=f"<b>You can use this feature only in our support chat.</b>",
+            text=f"<b>You can use this feature only in our channel</b>",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            "Join 🚩",
-                            url=f"https://t.me/Bisal_Files_Talk",
+                            "Updates 〽️",
+                            url=f"https://t.me/FilmZone_Official",
                         )
                     ]
                 ]
@@ -271,12 +271,12 @@ async def telegraph_upload(client, message):
         except Exception:
             pass
         text = await message.reply_text(
-            f"<b>Jai Shree Krishna {message.from_user.mention()},\nWᴀɪᴛ...😎</b>",
+            f"<b>✨ Hello {message.from_user.mention()},\nWᴀɪᴛ...😎</b>",
             disable_web_page_preview=True,
         )
         media = await replied.download()
         await text.edit_text(
-            f"<b>Jai Shree Krishna {message.from_user.mention()},\nNᴏᴡ Iᴍ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ɪᴍᴀɢᴇ...🤔</b>",
+            f"<b>✨ Hello {message.from_user.mention()},\nNᴏᴡ Iᴍ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ɪᴍᴀɢᴇ...🤔</b>",
             disable_web_page_preview=True,
         )
         try:
@@ -304,7 +304,7 @@ async def telegraph_upload(client, message):
                     [
                         [
                             InlineKeyboardButton(
-                                "sᴛᴀʀᴛ ᴍᴇ 🚩", url=f"https://t.me/bisal_gpt_bot?start=z"
+                                "start me 🌙", url=f"https://t.me/AngelAi_cpbot?start=z"
                             )
                         ]
                     ]
