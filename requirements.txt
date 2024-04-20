@@ -5,7 +5,8 @@ requests==2.26.0
 telegraph==2.2.0
 pymongo
 gunicorn==20.1.0
-aiohttp==3.8.2
+#aiohttp==3.8.2
+#for heroku remove the aiohttp librery.
 werkzeug==2.0.2
 itsdangerous==2.0.1
 https://codeload.github.com/KurimuzonAkuma/pyrogram/zip/refs/heads/dev
