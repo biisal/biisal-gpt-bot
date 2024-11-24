@@ -1,18 +1,19 @@
 # ©️biisal jai shree krishna 😎
 from os import environ
+from dotenv import load_dotenv
 
-API_ID = environ.get("API_ID", "")
-API_HASH = environ.get("API_HASH", "")
-BOT_TOKEN = environ.get("BOT_TOKEN", "")
-BOT_NAME = environ.get("BOT_NAME", "BISAL CHAT BOT")
-ADMIN = int(environ.get("ADMIN", ""))
-CHAT_GROUP = int(environ.get("CHAT_GROUP", "-1001812797837"))
-ADMIN_NAME = environ.get("ADMIN_NAME", "Bisal")
-LOG_CHANNEL = environ.get("LOG_CHANNEL", "")
-MONGO_URL = environ.get("MONGO_URL", "")
+load_dotenv()
+
+API_ID = environ.get("API_ID" , "2099007")
+API_HASH = environ.get("API_HASH" , "b1b3d7b3b1b3d7b3b1b3d7b3b1b3d7b3")
+BOT_TOKEN = environ.get("BOT_TOKEN" , "2099007:AAH1b3d7b3b1b3d7b3b1b3d7b3b1b3d7b3")
+ADMIN = int(environ.get("ADMIN" , "1847899007"))
+CHAT_GROUP = int(environ.get("CHAT_GROUP", "-100"))
+LOG_CHANNEL = environ.get("LOG_CHANNEL", "-100")
+MONGO_URL = environ.get("MONGO_URL" , "mongodb://localhost:27017")
 AUTH_CHANNEL = int(
-    environ.get("AUTH_CHANNEL", "-100XXXXXXXXXX")
-)  # add your channel id for force subscribe
+    environ.get("AUTH_CHANNEL", "-1001734958816")
+)
 FSUB = environ.get("FSUB", True)
 STICKERS_IDS = (
     "CAACAgQAAxkBAAEK99dlfC7LDqnuwtGRkIoacot_dGC4zQACbg8AAuHqsVDaMQeY6CcRojME"

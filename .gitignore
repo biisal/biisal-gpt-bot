@@ -1,0 +1,10 @@
+.env
+.plugins\__pycache__
+plugins\__pycache__
+plugins\*.pyc
+plugins\*.pyo
+.venv
+venv
+.__pycache__
+test.py
+.vscode
