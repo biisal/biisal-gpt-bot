@@ -1,67 +1,105 @@
-# Biisal GPT Bot
+# ChatGPT Telegram Bot
 
-Welcome to Biisal GPT Bot, a powerful AI chat bot created by @Biisal! This bot is designed to engage with users in conversation, providing intelligent responses and assistance across various topics.
+Welcome to the **ChatGPT Bot** repository! This bot allows users to chat with an AI directly in Telegram. Whether you're in a private chat or a group, the bot provides seamless interactions powered by the latest AI models.
+
+
+Best thing is you don't need any API key to create this bot.
 
 ## Features
 
-- **Database Support for Broadcasting Messages**: The bot supports database integration, allowing for easy broadcasting of messages to multiple users.
-- **Support for Group Interaction**: Use the bot in support groups with the 'bol' command, enabling seamless interaction and assistance for group members.
-- **Private Messaging Without Commands**: Engage with the bot directly in private conversations without the need for specific commands.
-- **Cooldown Timer**: A built-in cooldown timer prevents flooding and ensures a smooth chat experience for all users.
-- **User-Friendly Interface**: Easy deployment and intuitive interface make it accessible for anyone to set up and use.
-- **Fast Response Times**: Enjoy quick and efficient responses from the bot, providing timely assistance whenever needed.
-- **Continuous Development**: More features are regularly added to enhance the bot's functionality and user experience.
-- **Image Scanning**: Users can now utilize the image scanning feature, enabling them to upload images to the AI for analysis and receive information about the content of the image.
-- **Auto Reaction**: Bot can react to the sender massages
-- **Render/Koyeb deployment Support** :Now the bot can be deployed to Koyeb or Render with Heroku.
+- **Private Chat**: Users can chat with the bot directly without using any commands. The bot stores up to the last 50 messages in the conversation, allowing for continuous, context-aware responses.
+  
+- **Fast Responses**: The bot is optimized for speed, offering the most efficient and fast replies.
 
-## Deployment
+- **Fully Asynchronous**: No blocking or delays. Everything runs smoothly and asynchronously for a fluid experience.
 
-Deploy the bot on Heroku with just a click: [Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/biisal/biisal-gpt-bot)
+- **Image Generation**: Using the `/gen` command, users can generate high-quality images with AI.
 
-- **VARIABLES** :
+- **Group Chat Support**: In group chats, you can interact with the bot using the `/ai` command.
 
-```
-API_ID = YOUR TELEGRAM API ID
-API_HASH = YOUR TELEGRAM APP HASH
-BOT_TOKEN = YOUR BOT TOKEN
-BOT_NAME = YOUR BOT NAME EX> Lumina Chat Bot
-ADMIN = YOUR TELEGRAM ID
-CHAT_GROUP = YOUR CHAT GROUP ID
-ADMIN_NAME = YOUR NAME
-LOG_CHANNEL = A PRIVATE CHANNEL ID
-MONGO_URL = MONGO DB STRING
-AUTH_CHANNEL =
-STICKERS_IDS = REPLY STICKERS IDS
-COOL_TIMER = A COOLDOWN TIMER(20 , 15) TO PREVENT SPAM.
-ONLY_SCAN_IN_GRP  = VALUE SHOULD BE True or False
-```
+- **Reset Chat History**: Users can reset their chat history using the `/reset` command.
 
-## Usage
+- **Database Integration**: All chats and user details are stored in a database for easy management and reference.
 
-Once deployed, start conversing with the bot through your preferred messaging platform. Whether in private or group chats, the bot is ready to assist with your queries and provide intelligent responses.
+- **Broadcast Command**: Admins can use the broadcast command to send messages to all users at once.
+
+## AI Model Credits
+
+- **Mistral**
+- **Llama**
+- **Stable Diffusion**
+
+These powerful AI models provide high-quality responses and image generation capabilities.
+
+## Dependencies
+
+This bot uses **Pyrogram** library for Telegram interactions,**Motor** for async database operations and
+runs on **Python 3.12+** for optimal performance.
+
+### Installation
+
+To set up the bot on your local machine, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/biisal/chatgpt-bot.git
+   cd chatgpt-bot
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file in the root directory with your bot token and other configuration details:
+
+   ```bash
+    API_ID=your-telegram-api-id
+    API_HASH=your-telegram-api-hash
+    BOT_TOKEN=your-telegram-bot-token
+    ADMIN=your-telegram-user-id
+    CHAT_GROUP=your-telegram-group-id
+    LOG_CHANNEL=your-telegram-channel-id-for-logs
+    MONGO_URL=your-mongodb-connection-string
+   ```
+
+4. Run the bot:
+
+   ```bash
+   python bot.py
+   ```
+   - For mac or linux users use ->
+   `python3 bot.py`
+
+### Deploying this bot Repository in Koyeb or Render - 
+#### Deploying this bot in Render is Almost same as deploying it in Koyeb. You Just need to Follow the Steps.
+
+- Fork the repo and import it in Koyeb or Render by choosing web services.
+- Choose python if any server asks for it.
+- For Koyeb, in the builder section, choose the buildpack option.
+- For Render, use this as build command: `pip install -r requirements.txt`
+- For Koyeb, you don't need to add any build command.
+- For run or start command, use this command: `gunicorn app:app & python3 bot.py`
+- Add all env variables in environment variables section.
+
 
 ### Commands
 
-- **/start**: Start the bot and check if it's alive or not.
-- **/broadcast**: Broadcast a message to all users.
-- **/bol**: Talk with the bot in support group.
-- **/scan_ph**: Users can reply with this command to any photo and ask the bot to analyze it. For example, reply with the command `/scan_ph tell me about this image` to request information about the content of the image.
+- `/gen [prompt]`: Generate high-quality images using AI.
+- `/ai [text]`: Use this command in group chats to interact with the bot.
+- `/broadcast`: Admins can broadcast a message to all users.
+- `/reset`: Reset the chat history.
 
-## Feedback and Contributions
+## Contribution
 
-We welcome feedback and contributions from the community to improve and expand the capabilities of Biisal GPT Bot. Have an idea for a new feature or found a bug? Feel free to open an issue or submit a pull request.
-
-## Support
-
-- **Support Group**: Join our support group on Telegram for discussions, feedback, and assistance: [Biisal Files Talk](https://t.me/Bisal_Files_Talk).
-- **Creator's Profile**: Connect with the creator on Telegram: [@Biisal](https://t.me/Biisal).
-- **Website**: Visit the creator's website for more information: [Biisal's Website](https://bit.ly/bisal).
+Feel free to fork the repository and contribute by creating pull requests. If you find any issues or have suggestions for improvements, please open an issue.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
 
 ---
 
-Experience the power of AI-driven conversations with Biisal GPT Bot! 🤖✨
+Enjoy chatting with the AI!

@@ -1,17 +1,21 @@
 # ©️biisal jai shree krishna 😎
 import asyncio
+from io import BytesIO
+from operator import is_
+import os
+import tempfile
+import base64
 import random
 from pyrogram import filters
 from pyrogram.client import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton 
 import httpx
-from pyrogram.errors import FloodWait 
+from pyrogram.errors import FloodWait
 from info import * 
 from .db import *
 from .fsub import get_fsub
 
-user_cooldowns = {}
-
+cl = httpx.AsyncClient(base_url="https://core.avisek.online" , timeout=20) 
 
 @Client.on_message(filters.command("start") & filters.incoming) # type:ignore
 async def startcmd(client, message):
@@ -70,7 +74,7 @@ async def grp_ai(client: Client, message: Message):
     )
     if not query:
         return await message.reply_text(
-            "<b>Abe gadhe /ai k baad kuch likh to le !!.\n\nExample Use:\n<code>/bol Who is lord krshna??</code>\n\nHope you got it.Try it now..</b>"
+            "<b>Abe gadhe /ai k baad kuch likh to le !!.\n\nExample Use:\n<code>/ai Who is lord krshna??</code>\n\nHope you got it.Try it now..</b>"
         )
     if FSUB and not await get_fsub(client, message):return
     message.text = query # type:ignore
@@ -82,15 +86,41 @@ async def reset(client: Client, message: Message):
     try:
         await users.get_or_add_user(message.from_user.id, message.from_user.first_name)
         if FSUB and not await get_fsub(client, message):return
-        await chat_history.reset_history(message.from_user.id)
+        is_reset = await chat_history.reset_history(message.from_user.id)
+        if not is_reset:
+            return await message.reply_text("Unable to reset chat history.")
         await message.reply_text("<b>Chat history has been reset.</b>")
     except Exception as e:
         print("Error in reset: ", e)
+        return await message.reply_text("Sorry, Failed to reset chat history.")
+
+@Client.on_message(filters.command("gen") & filters.private)  # type:ignore
+async def gen_image(client: Client, message: Message):
+    sticker = None
+    try:
+        await users.get_or_add_user(message.from_user.id, message.from_user.first_name)
+        if FSUB and not await get_fsub(client, message):return
+        sticker = await message.reply_sticker(random.choice(STICKERS_IDS))
+        prompt = message.text.replace("/gen", "").strip()
+        encoded_prompt = prompt.replace("\n", " ")
+        if not prompt:
+            return await message.reply_text("Please provide a prompt.")
+        response = await cl.get(f"/image/?prompt={encoded_prompt}")
+        base64_image = response.json()["image"]
+        image_data = base64.b64decode(base64_image)
+        image_file = BytesIO(image_data)
+        await message.reply_photo(photo=image_file , caption=f"Generated Image for prompt: {prompt[:150]}...")
+        image_file.close() 
+    except Exception as e:
+        print("Error in gen_image: ", e)
+        return await message.reply_text("Sorry, I am not Available right now.")
+    finally:
+        if sticker:await sticker.delete()
 
 @Client.on_message(filters.text & filters.incoming & filters.private) # type:ignore
 async def ai_res(client: Client, message: Message ):
     sticker = None
-    reply = "..." # don't keep it empty
+    reply = None
     try:
         await users.get_or_add_user(message.from_user.id, message.from_user.first_name)
         if FSUB and not await get_fsub(client, message):return
@@ -101,16 +131,16 @@ async def ai_res(client: Client, message: Message ):
         user_id = message.from_user.id
         history = await chat_history.get_history(user_id)
         history.append({"role": "user", "content": text})
-        async with httpx.AsyncClient() as cl:
-            response = await cl.post("https://api.avisek.online/ai/", json=history , headers={"Content-Type": "application/json"}) 
-            response_json = response.json()
-            reply = response_json["response"]
-            history.append({"role": "assistant", "content": reply})
+        response = await cl.post("/ai/", json=history , headers={"Content-Type": "application/json"}) 
+        response_json = response.json()
+        reply = response_json["response"]
+        history.append({"role": "assistant", "content": reply})
+        await message.reply_text(reply)
+        await chat_history.add_history(user_id, history)
     except Exception as e:
         print("Error in ai_res: ", e)
         reply = "Sorry, I am not available right now."
-    finally:
         await message.reply_text(reply)
+    finally:
         if sticker:
             await sticker.delete()
-        await chat_history.add_history(user_id, history)

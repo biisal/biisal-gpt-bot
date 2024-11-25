@@ -61,7 +61,7 @@ class ChatHistory:
 
     async def add_history(self, user_id: int, history: list) -> bool:
         try:
-            recent_history = history[-50:]
+            recent_history = history[-50:] # increesing this will create a api error
             query = {"user_id": user_id}
             update = {"$set": {"history": recent_history}}
             await self.history.update_one(query, update, upsert=True)

@@ -8,3 +8,6 @@ venv
 .__pycache__
 test.py
 .vscode
+plugins/__pycache__/ai_chat.cpython-312.pyc
+plugins/__pycache__/db.cpython-312.pyc
+plugins/__pycache__/fsub.cpython-312.pyc
